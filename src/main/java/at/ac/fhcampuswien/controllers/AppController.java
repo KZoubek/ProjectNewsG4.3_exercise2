@@ -80,7 +80,7 @@ public class AppController {
      * @param articles  list to filter
      * @return filtered list
      */
-    private static List<Article> filterList(String query, List<Article> articles){
+    protected static List<Article> filterList(String query, List<Article> articles){
         List<Article> filtered = new ArrayList<>();
         for(Article i : articles){
             if(i.getTitle().toLowerCase().contains(query)){

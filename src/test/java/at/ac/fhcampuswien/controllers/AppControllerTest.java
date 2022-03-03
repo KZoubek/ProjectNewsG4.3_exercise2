@@ -26,7 +26,43 @@ public class AppControllerTest {
     }
 
     @Test
-    @DisplayName("getAllNewsBitcoin Test 1")
+    @DisplayName("filter list, query = \"t\" - Test 1")
+    public void filterList_scenario1(){
+        List<Article> list = generateMockList();
+        controller.setArticles(list);
+        List<Article> bitcoinArticles = controller.filterList("t", list);
+        assertEquals(3, bitcoinArticles.size());
+    }
+
+    @Test
+    @DisplayName("filter list, query with no matches - Test 2")
+    public void filterList_scenario2(){
+        List<Article> list = generateMockList();
+        controller.setArticles(list);
+        List<Article> bitcoinArticles = controller.filterList("abcde", list);
+        assertEquals(0, bitcoinArticles.size());
+    }
+
+    @Test
+    @DisplayName("filter list, query with 1 match - Test 3")
+    public void filterList_scenario3(){
+        List<Article> list = generateMockList();
+        controller.setArticles(list);
+        List<Article> bitcoinArticles = controller.filterList("eric adams", list);
+        assertEquals(1, bitcoinArticles.size());
+    }
+
+    @Test
+    @DisplayName("filter list, empty query - Test 4")
+    public void filterList_scenario4(){
+        List<Article> list = generateMockList();
+        controller.setArticles(list);
+        List<Article> bitcoinArticles = controller.filterList("", list);
+        assertEquals(3, bitcoinArticles.size());
+    }
+
+    @Test
+    @DisplayName("getAllNewsBitcoin, 1 result in size - Test 1")
     public void getAllNewsBitcoin_scenario1(){
         List<Article> list = generateMockList();
         controller.setArticles(list);
@@ -35,7 +71,7 @@ public class AppControllerTest {
     }
 
     @Test
-    @DisplayName("getAllNewsBitcoin Test 2")
+    @DisplayName("getAllNewsBitcoin, 1 result equals to - Test 2")
     public void getAllNewsBitcoin_scenario2(){
         List<Article> list = generateMockList();
         controller.setArticles(list);
@@ -44,7 +80,7 @@ public class AppControllerTest {
     }
 
     @Test
-    @DisplayName("getAllNewsBitcoin Test 3 - list is null")
+    @DisplayName("getAllNewsBitcoin, list is null - Test 3")
     public void getAllNewsBitcoin_scenario3(){
         controller.setArticles(null);
         List<Article> bitcoinArticles = controller.getAllNewsBitcoin();
@@ -52,7 +88,7 @@ public class AppControllerTest {
     }
 
     @Test
-    @DisplayName("getArticlesCount Test 1 - when articles is null")
+    @DisplayName("getArticlesCount, when articles is null - Test 1")
     public void getArticlesCount_scenario1(){
         controller.setArticles(null);
         int size = controller.getArticleCount();
@@ -60,7 +96,7 @@ public class AppControllerTest {
     }
 
     @Test
-    @DisplayName("getArticlesCount Test 2")
+    @DisplayName("getArticlesCount, all articles - Test 2")
     public void getArticlesCount_scenario2(){
         List<Article> list = generateMockList();
         controller.setArticles(list);
@@ -69,7 +105,7 @@ public class AppControllerTest {
     }
 
     @Test
-    @DisplayName("setArticles Test 1")
+    @DisplayName("setArticles, get the size - Test 1")
     public void setArticles_scenario1(){
         List<Article> list = generateMockList();
         controller.setArticles(list);
@@ -77,7 +113,7 @@ public class AppControllerTest {
     }
 
     @Test
-    @DisplayName("setArticles Test 2")
+    @DisplayName("setArticles, equals - Test 2")
     public void setArticles_scenario2(){
         List<Article> list = generateMockList();
         controller.setArticles(list);
