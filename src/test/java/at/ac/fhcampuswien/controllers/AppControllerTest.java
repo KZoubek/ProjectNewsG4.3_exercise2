@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AppControllerTest {
     private static AppController controller;
+    private List<Article> articles;
 
     @BeforeAll
     static void init(){
@@ -23,49 +23,47 @@ public class AppControllerTest {
     @BeforeEach
     void setup(){
         controller = new AppController();
+        articles = generateMockList();
+        controller.setArticles(articles);
     }
 
     @Test
     @DisplayName("filter list, query = \"t\" - Test 1")
     public void filterList_scenario1(){
-        List<Article> list = generateMockList();
-        controller.setArticles(list);
-        List<Article> bitcoinArticles = controller.filterList("t", list);
+        List<Article> bitcoinArticles = AppController.filterList("t", articles);
         assertEquals(3, bitcoinArticles.size());
     }
 
     @Test
     @DisplayName("filter list, query with no matches - Test 2")
     public void filterList_scenario2(){
-        List<Article> list = generateMockList();
-        controller.setArticles(list);
-        List<Article> bitcoinArticles = controller.filterList("abcde", list);
+        List<Article> bitcoinArticles = AppController.filterList("abcde", articles);
         assertEquals(0, bitcoinArticles.size());
     }
 
     @Test
     @DisplayName("filter list, query with 1 match - Test 3")
     public void filterList_scenario3(){
-        List<Article> list = generateMockList();
-        controller.setArticles(list);
-        List<Article> bitcoinArticles = controller.filterList("eric adams", list);
+        List<Article> bitcoinArticles = AppController.filterList("eric adams", articles);
         assertEquals(1, bitcoinArticles.size());
     }
 
     @Test
     @DisplayName("filter list, empty query - Test 4")
     public void filterList_scenario4(){
-        List<Article> list = generateMockList();
-        controller.setArticles(list);
-        List<Article> bitcoinArticles = controller.filterList("", list);
+        List<Article> bitcoinArticles = AppController.filterList("", articles);
         assertEquals(3, bitcoinArticles.size());
+    }
+
+    @Test
+    @DisplayName("filter list, query null - Test 5")
+    public void filterList_scenario5(){
+        assertThrows(IllegalArgumentException.class, () ->  AppController.filterList(null, articles));
     }
 
     @Test
     @DisplayName("getAllNewsBitcoin, 1 result in size - Test 1")
     public void getAllNewsBitcoin_scenario1(){
-        List<Article> list = generateMockList();
-        controller.setArticles(list);
         List<Article> bitcoinArticles = controller.getAllNewsBitcoin();
         assertEquals(1, bitcoinArticles.size());
     }
@@ -73,8 +71,6 @@ public class AppControllerTest {
     @Test
     @DisplayName("getAllNewsBitcoin, 1 result equals to - Test 2")
     public void getAllNewsBitcoin_scenario2(){
-        List<Article> list = generateMockList();
-        controller.setArticles(list);
         List<Article> bitcoinArticles = controller.getAllNewsBitcoin();
         assertEquals("Eric Adams, a Bitcoin Booster, Is Taking First Paycheck in Crypto", bitcoinArticles.get(0).getTitle());
     }
@@ -98,8 +94,6 @@ public class AppControllerTest {
     @Test
     @DisplayName("getArticlesCount, all articles - Test 2")
     public void getArticlesCount_scenario2(){
-        List<Article> list = generateMockList();
-        controller.setArticles(list);
         int size = controller.getArticleCount();
         assertEquals(3, size);
     }
@@ -107,25 +101,19 @@ public class AppControllerTest {
     @Test
     @DisplayName("setArticles, get the size - Test 1")
     public void setArticles_scenario1(){
-        List<Article> list = generateMockList();
-        controller.setArticles(list);
         assertEquals(controller.getArticles().size(), 3);
     }
 
     @Test
     @DisplayName("setArticles, equals - Test 2")
     public void setArticles_scenario2(){
-        List<Article> list = generateMockList();
-        controller.setArticles(list);
         assertEquals("New York Times", controller.getArticles().get(0).getAuthor());
     }
 
     @Test
     @DisplayName("getTopHeadlinesAustria Test 1")
     public void getTopHeadlinesAustria_scenario1(){
-        List<Article> list = generateMockList();
-        controller.setArticles(list);
-        assertEquals(list, controller.getTopHeadlinesAustria());
+        assertEquals(articles, controller.getTopHeadlinesAustria());
     }
 
     @Test

@@ -81,12 +81,16 @@ public class AppController {
      * @return filtered list
      */
     protected static List<Article> filterList(String query, List<Article> articles){
-        List<Article> filtered = new ArrayList<>();
-        for(Article i : articles){
-            if(i.getTitle().toLowerCase().contains(query)){
-                filtered.add(i);
+        if(query != null) {
+            List<Article> filtered = new ArrayList<>();
+            for(Article i : articles){
+                if(i.getTitle().toLowerCase().contains(query)){
+                    filtered.add(i);
+                }
             }
+            return filtered;
+        } else {
+            throw new IllegalArgumentException();
         }
-        return filtered;
     }
 }
