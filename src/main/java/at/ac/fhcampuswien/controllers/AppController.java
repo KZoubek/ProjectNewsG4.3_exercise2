@@ -81,7 +81,7 @@ public class AppController {
      * @return filtered list
      */
     protected static List<Article> filterList(String query, List<Article> articles){
-        if(query != null) {
+        if(query != null && articles != null) {
             List<Article> filtered = new ArrayList<>();
             for(Article i : articles){
                 if(i.getTitle().toLowerCase().contains(query)){
@@ -90,7 +90,8 @@ public class AppController {
             }
             return filtered;
         } else {
-            throw new IllegalArgumentException();
+            return new ArrayList<>();
+            //throw new IllegalArgumentException();
         }
     }
 }

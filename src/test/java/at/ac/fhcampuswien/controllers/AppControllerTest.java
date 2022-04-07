@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AppControllerTest {
     private static AppController controller;
-    private List<Article> articles;
+    private List<Article> testList;
 
     @BeforeAll
     static void init(){
@@ -23,42 +23,8 @@ public class AppControllerTest {
     @BeforeEach
     void setup(){
         controller = new AppController();
-        articles = generateMockList();
-        controller.setArticles(articles);
-    }
-
-    @Test
-    @DisplayName("filter list, query = \"t\" - Test 1")
-    public void filterList_scenario1(){
-        List<Article> bitcoinArticles = AppController.filterList("t", articles);
-        assertEquals(3, bitcoinArticles.size());
-    }
-
-    @Test
-    @DisplayName("filter list, query with no matches - Test 2")
-    public void filterList_scenario2(){
-        List<Article> bitcoinArticles = AppController.filterList("abcde", articles);
-        assertEquals(0, bitcoinArticles.size());
-    }
-
-    @Test
-    @DisplayName("filter list, query with 1 match - Test 3")
-    public void filterList_scenario3(){
-        List<Article> bitcoinArticles = AppController.filterList("eric adams", articles);
-        assertEquals(1, bitcoinArticles.size());
-    }
-
-    @Test
-    @DisplayName("filter list, empty query - Test 4")
-    public void filterList_scenario4(){
-        List<Article> bitcoinArticles = AppController.filterList("", articles);
-        assertEquals(3, bitcoinArticles.size());
-    }
-
-    @Test
-    @DisplayName("filter list, query null - Test 5")
-    public void filterList_scenario5(){
-        assertThrows(IllegalArgumentException.class, () ->  AppController.filterList(null, articles));
+        testList = generateMockList();
+        controller.setArticles(testList);
     }
 
     @Test
@@ -113,7 +79,7 @@ public class AppControllerTest {
     @Test
     @DisplayName("getTopHeadlinesAustria Test 1")
     public void getTopHeadlinesAustria_scenario1(){
-        assertEquals(articles, controller.getTopHeadlinesAustria());
+        assertEquals(testList, controller.getTopHeadlinesAustria());
     }
 
     @Test
@@ -135,5 +101,71 @@ public class AppControllerTest {
         articles.add(article3);
 
         return articles;
+    }
+
+    @Test
+    @DisplayName("filter list, query = \"t\" size - Test 1")
+    public void filterList_scenario1(){
+        List<Article> actual = AppController.filterList("t", testList);
+        assertEquals(3, actual.size());
+    }
+
+    @Test
+    @DisplayName("filter list, query = \"t\" equal - Test 2")
+    public void filterList_scenario2(){
+        List<Article> actual = AppController.filterList("t", testList);
+
+        List<Article> expected = new ArrayList<>();
+        Article article1 = new Article("New York Times", "Eric Adams, a Bitcoin Booster, Is Taking First Paycheck in Crypto");
+        Article article2 = new Article("News Sky", "Irishman held against his will in China for 3 years reunited with 'unbelievably happy' family");
+        Article article3 = new Article("News Sky", "Mother who won £127,000 tells how she still ended up homeless");
+        expected.add(article1);
+        expected.add(article2);
+        expected.add(article3);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("filter list, query with no matches - Test 3")
+    public void filterList_scenario3(){
+        List<Article> actual = AppController.filterList("abcde", testList);
+        assertEquals(0, actual.size());
+    }
+
+    @Test
+    @DisplayName("filter list, query with 1 match - Test 4")
+    public void filterList_scenario4(){
+        List<Article> actual = AppController.filterList("eric adams", testList);
+        assertEquals(1, actual.size());
+    }
+
+    @Test
+    @DisplayName("filter list, null query - Test 5")
+    public void filterList_scenario5(){
+        List<Article> actual = AppController.filterList(null, testList);
+        assertEquals(0, actual.size());
+    }
+
+    /*
+    @Test
+    @DisplayName("filter list, query null exception - Test 5")
+    public void filterList_scenario5(){
+        assertThrows(IllegalArgumentException.class, () ->  AppController.filterList(null, articles));
+    }
+     */
+
+    @Test
+    @DisplayName("filter list, null list - Test 6")
+    public void filterList_scenario6(){
+        List<Article> actual = AppController.filterList("t", null);
+        assertEquals(0, actual.size());
+    }
+
+    @Test
+    @DisplayName("filter list, list and query null - Test 7")
+    public void filterList_scenario7(){
+        List<Article> actual = AppController.filterList(null, null);
+        assertEquals(0, actual.size());
     }
 }

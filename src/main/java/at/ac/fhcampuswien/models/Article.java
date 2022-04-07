@@ -18,6 +18,20 @@ public class Article {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof Article obj2)) {
+            return false;
+        }
+
+        return CharSequence.compare(title, obj2.title) == 0
+                && CharSequence.compare(author, obj2.author) == 0;
+    }
+
+    @Override
     public String toString() {
         return "Title: " + getTitle() + "\n" +
                 "Author: " + getAuthor();
