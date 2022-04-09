@@ -3,10 +3,18 @@ package at.ac.fhcampuswien.models;
 public class Article {
     private String author;
     private String title;
+    /*
+    private String description;
+	private String url;
+	private String urltoimage;
+	private Date publishedat
+    private String content
+     */
 
     public Article(String author, String title){
         this.author = author;
         this.title = title;
+
     }
 
     public String getAuthor() {
