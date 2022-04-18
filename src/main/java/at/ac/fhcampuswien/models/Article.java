@@ -8,7 +8,7 @@ public class Article {
         this.author = author;
         this.title = title;
     }
-
+//test
     public String getAuthor() {
         return author;
     }
