@@ -30,7 +30,7 @@ public class NewsApi {
     //implementieren von gson plus library okhttp
 
     // okhttp plus Gson sample code
-    // avoid creating several instances, should be singleon
+    // avoid creating several instances, should be single
     //OkHttpClient client = new OkHttpClient();
     // code request code here
     String doGetRequest(String url) throws IOException {
