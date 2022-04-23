@@ -5,9 +5,9 @@ import at.ac.fhcampuswien.models.Article;
 import java.util.List;
 
 public class NewsResponse {
-    private String status;
-    private int totalResults;
-    private List<Article> articles;
+    private final String status;
+    private final int totalResults;
+    private final List<Article> articles;
 
     public NewsResponse (String status,int totalResults, List<Article> articles){
         this.status = status;
@@ -25,5 +25,14 @@ public class NewsResponse {
 
     public List<Article> getArticles() {
         return articles;
+    }
+
+    @Override
+    public String toString() {
+        return "NewsResponse{" +
+                "status='" + status + '\'' +
+                ", totalResults=" + totalResults +
+                ", articles=" + articles +
+                '}';
     }
 }
