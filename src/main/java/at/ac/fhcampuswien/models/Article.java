@@ -1,16 +1,25 @@
 package at.ac.fhcampuswien.models;
 
-import java.util.Objects;
-
 public class Article {
-    private String author;
-    private String title;
-    private String description;
-    private String url;
-    private String urlToImage;
-    private String publishedAt;
-    private String content;
+    private final String author;
+    private final String title;
+    private final String description;
+    private final String url;
+    private final String urlToImage;
+    private final String publishedAt;
+    private final String content;
+    private final Source source;
 
+    public Article(String author, String title, String description, String url, String urlToImage, String publishedAt, String content, Source source) {
+        this.author = author;
+        this.title = title;
+        this.description = description;
+        this.url = url;
+        this.urlToImage = urlToImage;
+        this.publishedAt = publishedAt;
+        this.content = content;
+        this.source = source;
+    }
     public String getDescription() {
         return description;
     }
@@ -31,21 +40,8 @@ public class Article {
         return content;
     }
 
-    public String getSource() {
+    public Source getSource() {
         return source;
-    }
-
-    private String source;
-
-    public Article(String author, String title, String description, String url, String urlToImage, String publishedAt, String content, String source) {
-        this.author = author;
-        this.title = title;
-        this.description = description;
-        this.url = url;
-        this.urlToImage = urlToImage;
-        this.publishedAt = publishedAt;
-        this.content = content;
-        this.source = source;
     }
 
     public String getAuthor() {
@@ -72,7 +68,7 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Article{" +
+        return "\nArticle{" +
                 "author='" + author + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
@@ -81,6 +77,28 @@ public class Article {
                 ", publishedAt='" + publishedAt + '\'' +
                 ", content='" + content + '\'' +
                 ", source='" + source + '\'' +
-                '}';
+                "}\n";
+    }
+
+
+    static class Source {
+        private String id;
+        private String name;
+
+        public String getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String toString() {
+            return "Source{" +
+                    "id='" + id + '\'' +
+                    ", name='" + name + '\'' +
+                    '}';
+        }
     }
 }
