@@ -11,6 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/*
 public class AppControllerTest {
     private static AppController controller;
     private List<Article> testList;
@@ -154,7 +155,7 @@ public class AppControllerTest {
         assertThrows(IllegalArgumentException.class, () ->  AppController.filterList(null, articles));
     }
      */
-
+/*
     @Test
     @DisplayName("filter list, null list - Test 6")
     public void filterList_scenario6(){
@@ -169,3 +170,5 @@ public class AppControllerTest {
         assertEquals(0, actual.size());
     }
 }
+
+ */

@@ -46,6 +46,18 @@ public class NewsResponse {
         public String getName(){
             return name;
         }
+
+        @Override
+        public String toString(){
+            return "status:" + getStatus() + ",\n" +
+                    "totalResulats:" + getTotalResults() + ",\n" +
+                    "article: [ \n {" +
+                    "sourse: {" +
+                    "id:" + getId() + ",\n" +
+                    "name:" + getName() + "\n" +
+                    "},\n";
+        }
+
     }
 
 
