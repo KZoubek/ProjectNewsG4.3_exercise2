@@ -1,5 +1,5 @@
 package at.ac.fhcampuswien.models;
-
+//test comment
 public class Article {
     private String author;
     private String title;
