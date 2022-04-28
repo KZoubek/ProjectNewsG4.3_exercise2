@@ -1,6 +1,7 @@
 package at.ac.fhcampuswien.models;
-
+//Added necessary attributes
 public class Article {
+    //here will the data coming from NewsApi be stored
     private final String author;
     private final String title;
     private final String description;
@@ -21,10 +22,11 @@ public class Article {
         this.subClassIdAndName = subClassIdAndName;
     }
 
+    /*
     public String getTitle() {
-        return title;
+    return title;
     }
-
+*/
     @Override
     public String toString() {
         return "\nArticle{" +
