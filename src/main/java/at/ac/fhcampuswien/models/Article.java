@@ -20,50 +20,9 @@ public class Article {
         this.content = content;
         this.subClassIdAndName = subClassIdAndName;
     }
-    public String getDescription() {
-        return description;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getUrlToImage() {
-        return urlToImage;
-    }
-
-    public String getPublishedAt() {
-        return publishedAt;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public SubClassIdAndName getSource() {
-        return subClassIdAndName;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
 
     public String getTitle() {
         return title;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-
-        if (!(obj instanceof Article obj2)) {
-            return false;
-        }
-
-        return CharSequence.compare(title, obj2.title) == 0
-                && CharSequence.compare(author, obj2.author) == 0;
     }
 
     @Override

@@ -25,15 +25,11 @@ public class Menu {
         switch (input) {
             case "a" -> getTopHeadlinesAustria(controller);
             case "b" -> getAllNewsBitcoin(controller);
-            case "y" -> getArticleCount(controller);
             case "q" -> printExitMessage();
             default -> printInvalidInputMessage();
         }
     }
 
-    private void getArticleCount(AppController controller) {
-        System.out.println("Number of articles: " + controller.getArticleCount());
-    }
 
     private void getTopHeadlinesAustria(AppController controller) {
         System.out.println(controller.getTopHeadlinesAustria());
