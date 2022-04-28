@@ -9,9 +9,9 @@ public class Article {
     private final String urlToImage;
     private final String publishedAt;
     private final String content;
-    private final SubClassIdAndName subClassIdAndName;
+    private final String SubClassIdAndName;
 
-    public Article(String author, String title, String description, String url, String urlToImage, String publishedAt, String content, SubClassIdAndName subClassIdAndName) {
+    public Article(String author, String title, String description, String url, String urlToImage, String publishedAt, String content, String SubClassIdAndName) {
         this.author = author;
         this.title = title;
         this.description = description;
@@ -19,7 +19,7 @@ public class Article {
         this.urlToImage = urlToImage;
         this.publishedAt = publishedAt;
         this.content = content;
-        this.subClassIdAndName = subClassIdAndName;
+        this.SubClassIdAndName = SubClassIdAndName;
     }
 
     /*
@@ -30,16 +30,15 @@ public class Article {
     @Override
     //automaticly generated tostring methods
     public String toString() {
-        return "\nArticle{" +
-                "author='" + author + '\'' +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", url='" + url + '\'' +
-                ", urlToImage='" + urlToImage + '\'' +
-                ", publishedAt='" + publishedAt + '\'' +
-                ", content='" + content + '\'' +
-                ", source='" + subClassIdAndName + '\'' +
-                "}\n";
+        return "\nArticle \n" +
+                "Author: " + author + "\n" +
+                "Title: " + title + "\n" +
+                "Description: " + description + "\n" +
+                "URL: " + url + "\n" +
+                "Image Link: " + urlToImage + "\n" +
+                "published at: " + publishedAt + "\n" +
+                "Content: " + content + "\n" +
+                "Source: " + SubClassIdAndName + "\n";
     }
 
     //special subclass for getting the id, name out of jason file
@@ -48,19 +47,18 @@ public class Article {
         private String name;
 
         public String getId() {
-            return id;
+            return this.id;
         }
 
         public String getName() {
-            return name;
+            return this.name;
         }
 
         @Override
         public String toString() {
-            return "Source{" +
-                    "id='" + id + '\'' +
-                    ", name='" + name + '\'' +
-                    '}';
+            return "Source: " +
+                    "id: " + getId() + "\n" +
+                    "name: " + getName() + "\n";
         }
     }
 }
