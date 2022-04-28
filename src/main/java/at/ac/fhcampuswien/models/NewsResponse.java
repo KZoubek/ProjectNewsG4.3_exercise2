@@ -22,6 +22,16 @@ public class NewsResponse {
         return articles;
     }
 
+    //for future use added
+    public String getStatus() {
+        return status;
+    }
+
+    //for future use added
+    public int getTotalResults() {
+        return totalResults;
+    }
+
     @Override
     public String toString() {
         //the toString method returns the status, totalResults and article. (information from article = Article class, status & totalResults = NewsApi class)
