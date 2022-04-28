@@ -28,6 +28,7 @@ public class Article {
     }
 */
     @Override
+    //automaticly generated tostring methods
     public String toString() {
         return "\nArticle{" +
                 "author='" + author + '\'' +
@@ -41,7 +42,7 @@ public class Article {
                 "}\n";
     }
 
-
+    //special subclass for getting the id, name out of jason file
     static class SubClassIdAndName {
         private String id;
         private String name;
