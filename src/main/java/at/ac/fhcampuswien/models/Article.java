@@ -9,9 +9,9 @@ public class Article {
     private final String urlToImage;
     private final String publishedAt;
     private final String content;
-    private final String SubClassIdAndName;
+    private final Source source;
 
-    public Article(String author, String title, String description, String url, String urlToImage, String publishedAt, String content, String SubClassIdAndName) {
+    public Article(String author, String title, String description, String url, String urlToImage, String publishedAt, String content, Source source) {
         this.author = author;
         this.title = title;
         this.description = description;
@@ -19,7 +19,7 @@ public class Article {
         this.urlToImage = urlToImage;
         this.publishedAt = publishedAt;
         this.content = content;
-        this.SubClassIdAndName = SubClassIdAndName;
+        this.source = source;
     }
 
     /*
@@ -38,11 +38,11 @@ public class Article {
                 "Image Link: " + urlToImage + "\n" +
                 "published at: " + publishedAt + "\n" +
                 "Content: " + content + "\n" +
-                "Source: " + SubClassIdAndName + "\n";
+                "Source: " + source.getName() + "\n";
     }
 
     //special subclass for getting the id, name out of jason file
-    static class SubClassIdAndName {
+    static class Source {
         private String id;
         private String name;
 
